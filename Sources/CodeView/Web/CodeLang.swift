@@ -1,0 +1,203 @@
+//
+//  CodeLang.swift
+//  CodeView
+//
+//  Created by Yume on 2023/3/1.
+//
+
+import Foundation
+
+public enum CodeLang: String {
+    case c1 = "1c"
+    case abnf
+    case accesslog
+    case actionscript
+    case ada
+    case angelscript
+    case apache
+    case applescript
+    case arcade
+    case arduino
+    case armasm
+    case asciidoc
+    case aspectj
+    case autohotkey
+    case autoit
+    case avrasm
+    case awk
+    case axapta
+    case bash
+    case basic
+    case bnf
+    case brainfuck
+    case c
+    case cal
+    case capnproto
+    case ceylon
+    case clean
+    case clojure_repl = "clojure-repl"
+    case clojure
+    case cmake
+    case coffeescript
+    case coq
+    case cos
+    case cpp
+    case crmsh
+    case crystal
+    case csharp
+    case csp
+    case css
+    case d
+    case dart
+    case delphi
+    case diff
+    case django
+    case dns
+    case dockerfile
+    case dos
+    case dsconfig
+    case dts
+    case dust
+    case ebnf
+    case elixir
+    case elm
+    case erb
+    case erlang_repl = "erlang-repl"
+    case erlang
+    case excel
+    case fix
+    case flix
+    case fortran
+    case fsharp
+    case gams
+    case gauss
+    case gcode
+    case gherkin
+    case glsl
+    case gml
+    case go
+    case golo
+    case gradle
+    case graphql
+    case groovy
+    case haml
+    case handlebars
+    case haskell
+    case haxe
+    case hsp
+    case http
+    case hy
+    case inform7
+    case ini
+    case irpf90
+    case isbl
+    case java
+    case javascript
+    case jboss_cli = "jboss-cli"
+    case json
+    case julia_repl = "julia-repl"
+    case julia
+    case kotlin
+    case lasso
+    case latex
+    case ldif
+    case leaf
+    case less
+    case lisp
+    case livecodeserver
+    case livescript
+    case llvm
+    case lsl
+    case lua
+    case makefile
+    case markdown
+    case mathematica
+    case matlab
+    case maxima
+    case mel
+    case mercury
+    case mipsasm
+    case mizar
+    case mojolicious
+    case monkey
+    case moonscript
+    case n1ql
+    case nestedtext
+    case nginx
+    case nim
+    case nix
+    case node_repl = "node-repl"
+    case nsis
+    case objectivec
+    case ocaml
+    case openscad
+    case oxygene
+    case parser3
+    case perl
+    case pf
+    case pgsql
+    case php_template = "php-template"
+    case php
+    case plaintext
+    case pony
+    case powershell
+    case processing
+    case profile
+    case prolog
+    case properties
+    case protobuf
+    case puppet
+    case purebasic
+    case python_repl = "python-repl"
+    case python
+    case q
+    case qml
+    case r
+    case reasonml
+    case rib
+    case roboconf
+    case routeros
+    case rsl
+    case ruby
+    case ruleslanguage
+    case rust
+    case sas
+    case scala
+    case scheme
+    case scilab
+    case scss
+    case shell
+    case smali
+    case smalltalk
+    case sml
+    case sqf
+    case sql
+    case stan
+    case stata
+    case step21
+    case stylus
+    case subunit
+    case swift
+    case taggerscript
+    case tap
+    case tcl
+    case thrift
+    case tp
+    case twig
+    case typescript
+    case vala
+    case vbnet
+    case vbscript_html = "vbscript-html"
+    case vbscript
+    case verilog
+    case vhdl
+    case vim
+    case wasm
+    case wren
+    case x86asm
+    case xl
+    case xml
+    case xquery
+    case yaml
+    case zephir
+}
