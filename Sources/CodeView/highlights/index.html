@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles/github-dark.min.css">
+    <link rel="stylesheet" href="github-markdown-dark.css">
+        
+    <script src="highlight.min.js"></script>
+<!--    <script src="highlightjs-line-numbers.min.js"></script>-->
+    <script src="marked.min.js"></script>
+    
+    <style type="text/css">
+        article {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            overflow: auto;
+        }
+        
+        pre {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: 0;
+          padding: 0;
+          background-color: black;
+          color: white;
+          overflow: auto;
+        }
+
+        code {
+          display: block;
+          margin: 0;
+          padding: 0px;
+          font-size: 18px;
+          line-height: 1.5;
+        }
+        
+        /* for block of numbers */
+    </style>
+    
+<!--    <script>hljs.highlightAll();</script>-->
+</head>
+<body>
+    <article id="md" class="markdown-body"></article>
+    <pre id="pre">
+        <code id="code" contenteditable="true"></code>
+    </pre>
+    <script>
+        var pre = document.getElementById("pre");
+        var code = document.getElementById("code");
+        var md = document.getElementById("md");
+        var isInit = false;
+        var json = {};
+        json.code = "# Title"
+        json.lang = "markdown"
+        var json2 = {};
+        json2.code = 'print("abc")'
+        json2.lang = "swift"
+        
+        var lang = ''
+        
+        function save() {
+            var text = code.outerText
+            
+            const highlightedCode = hljs.highlight(text, {language: lang}).value;
+            code.innerHTML = highlightedCode;
+            console.log(text);
+            console.log(highlightedCode);
+            
+            //hljs.highlightElement(code);
+            
+            if (window.webkit != null) {
+                window.webkit.messageHandlers.onSave.postMessage(text);
+            }
+        }
+        
+        function load(json) {
+            console.log(json.code);
+            console.log(json.lang);
+            // var codeText = hljs.highlight(`${json.code}`, {language: `${json.lang}`}).value;
+            // console.log(codeText);
+            // code.innerHTML = codeText;
+            
+            if (json.lang == 'markdown') {
+                pre.style.display = "none";
+                
+                md.style.display = '';
+                md.innerHTML = marked.parse(json.code);
+            } else {
+                pre.style.display = '';
+                code.innerHTML = json.code;
+                lang = json.lang
+                code.className = `language-${lang}`
+                
+                md.style.display = "none";
+            }
+            
+            if (isInit) {
+                hljs.highlightElement(code);
+            } else {
+                hljs.highlightAll();
+                isInit = true;
+            }
+        }
+    </script>
+</body>
+</html>
