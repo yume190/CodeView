@@ -8,6 +8,6 @@
 import Foundation
 
 public extension NSNotification.Name {
-    static var clearTerm: NSNotification.Name = .init("clearTerm")
+    
     static var save: NSNotification.Name = .init("save")
 }

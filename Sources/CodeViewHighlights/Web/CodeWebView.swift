@@ -8,25 +8,24 @@
 import PathKit
 import SwiftUI
 import WebKit
+import Workspace
 
 @objc
 class Message: NSObject, WKScriptMessageHandler {
-    let file: SourceFile
-    let ws: Workspace?
-    init(_ file: SourceFile, _ ws: Workspace?) {
+    let file: AbsolutePathSourceFile
+    init(_ file: AbsolutePathSourceFile) {
         self.file = file
-        self.ws = ws
     }
 
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         switch message.name {
         case "onSave":
             guard let code = message.body as? String else { return }
-            guard let folder = ws?.to else { return }
-            guard let path = file.path else { return }
-            let to = PathKit.Path(folder) + path
+//            guard let folder = ws?.to else { return }
+//            guard let path = file.path else { return }
+//            let to = PathKit.Path(folder) + path
             do {
-                try to.write(code, encoding: .utf8)
+              try file.write(code: code)
             } catch {
                 print(error)
             }
@@ -93,10 +92,10 @@ private struct CodeWebViewInner: NSViewRepresentable {
     let message: Message
     let file: SourceFile
 
-    init(_ file: SourceFile, _ ws: Workspace?) {
+    init(_ file: AbsolutePathSourceFile) {
         self.file = file
         self.navigation = .init(file)
-        self.message = .init(file, ws)
+        self.message = .init(file)
 
         let preferences = WKWebpagePreferences()
         if #available(macOS 11.0, *) {
@@ -132,8 +131,8 @@ private struct CodeWebViewInner: NSViewRepresentable {
 
 struct CodeWebView: View {
     private let inner: CodeWebViewInner
-    init(_ file: SourceFile, _ ws: Workspace? = nil) {
-        self.inner = CodeWebViewInner(file, ws)
+    init(_ file: AbsolutePathSourceFile) {
+        self.inner = CodeWebViewInner(file)
     }
 
     let pub = NotificationCenter.default
