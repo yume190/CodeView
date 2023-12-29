@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>monaco editor</title>
+
+        <!-- MONACO CSS -->
+        <link rel="stylesheet" data-name="vs/editor/editor.main" href="min/vs/editor/editor.main.css">
+<!--        <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+        <style type="text/css">
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #monaco_editor {
+            overflow: hidden;
+            height: 100%;
+            
+            
+            width: 100vw; /* 100% of the viewport width */
+        }
+        </style>
+    </head>
+
+<!--    <body>-->
+    <body style="background-color: rgb(140, 190, 190);">
+        <div id="monaco_editor" />
+
+        <!-- MONACO JS -->
+        <script>var require = { paths: { 'vs': 'min/vs' } };</script>
+
+        <script src="min/vs/loader.js"></script>
+        <script src="min/vs/editor/editor.main.nls.js"></script>
+        <script src="min/vs/editor/editor.main.js"></script>
+
+        <script>
+        // CREATE AN EDITOR
+        var h_div = document.getElementById('monaco_editor');
+        var editor = monaco.editor.create(h_div, {
+            value: [
+                'function x() {',
+                '\tconsole.log("Hello world!");',
+                '}'
+            ].join('\n'),
+            language: 'swift',
+            theme: 'vs-dark'
+        });
+          
+          
+        function loadCode(json) {
+            console.log(json.code);
+            editor.setValue(json.code);
+        }
+          
+        function save() {
+            var code = editor.getValue();
+            console.log(code);
+            if (window.webkit != null) {
+                window.webkit.messageHandlers.onSave.postMessage(code);
+            }
+        }
+        </script>
+    </body>
+</html>
+
+
+    
